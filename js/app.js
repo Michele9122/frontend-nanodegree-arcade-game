@@ -3,8 +3,9 @@ var Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
-    //x pos
-    //y pos
+    this.x = 0;
+    this.y = 55;
+    this.step = 101;
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -18,9 +19,14 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
 
-    //se il nemico si trova ancora nella mappa
+    if(this.x < this.step * 5) {
         //muoviti avanti
         //aumenta velocità
+        this.x += 250* dt;
+    } else {
+        this.x = -this.step;
+    }
+        
     //se si trova fuori
         //resetta la posizione a start
 
@@ -96,6 +102,9 @@ class Player {
 }
 
 const player = new Player();
+const bug1 = new Enemy();
+const allEnemies = [];
+allEnemies.push(bug1);
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
