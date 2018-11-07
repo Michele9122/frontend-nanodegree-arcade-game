@@ -77,7 +77,9 @@ class Player {
                 }
             break;
             case 'up':
-                this.y -= this.jump;
+             if (this.y > this.jump) {
+                 this.y -= this.jump;
+             }
             break;
             case 'right':
              if (this.x < this.step * 4) {
