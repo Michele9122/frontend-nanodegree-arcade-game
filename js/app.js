@@ -1,11 +1,12 @@
 // Enemies our player must avoid
-var Enemy = function(x,y) {
+var Enemy = function(x,y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     this.x = x;
     this.y = y + 55;
     this.step = 101;
+    this.speed = speed;
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -22,7 +23,7 @@ Enemy.prototype.update = function(dt) {
     if(this.x < this.step * 5) {
         //muoviti avanti
         //aumenta velocità
-        this.x += 250* dt;
+        this.x += this.speed * dt;
     } else {
         this.x = -this.step;
     }
@@ -60,15 +61,18 @@ Enemy.prototype.render = function() {
         //reset hero
 
 
+
+
 class Player {
     constructor() {
         this.step = 101;
         this.jump = 83;
         this.startX = this.step * 2; //VEDERE COME MODIFICARE
-        this.startY = (this.jump * 5) - 20;
+        this.startY = (this.jump * 4) + 55;
         this.x = this.startX;     //set an initial value for the x and y property
         this.y = this.startY;
         this.sprite = 'images/char-boy.png'; //load the png from the folder
+        this.win = false;
     }
     //draw player on the current position
     render(){
@@ -99,12 +103,26 @@ class Player {
             break;    
         }
     }
+    update () {
+        for (let enemy of allEnemies){
+            if (this.y === enemy.y && (enemy.x + enemy.step > this.x && enemy.x < this.x + this.step)) {
+                this.reset();
+            }
+            if(this.y === 55);
+                this.win = true;
+        }
+    }
+
+    reset() {
+        this.x = this.startX;
+        this.y = this.startY;
+    }
 }
 
 const player = new Player();
-const bug1 = new Enemy(-101, 0);
-const bug2 = new Enemy(-101, 83);
-const bug3 = new Enemy((-101*2.5), 83);
+const bug1 = new Enemy(-101, 0, 200);
+const bug2 = new Enemy(-101, 83, 300);
+const bug3 = new Enemy((-101*2.5), 83, 300);
 const allEnemies = [];
 allEnemies.push(bug1,bug2,bug3);
 
