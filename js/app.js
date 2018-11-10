@@ -91,6 +91,8 @@ class Player {
                 removeLife();
                 if(this.lose === 0) {
                     lose.classList.toggle('modal__hide');
+                    resetScore();
+                    this.lose = 3;
                 }
             }
         }
@@ -109,12 +111,22 @@ function removeLife(){
     const heartList = document.querySelectorAll('.hearts i');
     for(heart of heartList){
         if (!heart.classList.contains('heart__hide')) {
-        heart.classList.remove('heart__show');
+        heart.classList.toggle('heart__show');
         heart.classList.add('heart__hide');
         break;
         }
     }
 }
+
+function resetScore() {
+    const resetHeart = document.querySelectorAll('.hearts i');
+    for(heart of resetHeart) {
+        heart.classList.toggle('heart__hide');
+        heart.classList.toggle('heart__show');
+    }
+}
+
+
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
