@@ -1,3 +1,89 @@
 body {
     text-align: center;
 }
+
+
+/* Style for the modal  */
+.modal__background {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.54);
+}
+
+.modal__body {
+	position: relative;
+	width: 400px;
+	top: 50%;
+	left: 50%;
+	background: #ffffff;
+	transform: translate(-50%, -50%);
+}
+
+.modal__heading {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+}
+
+.modal__close {
+	font-weight: bold;
+	font-size: 2rem;
+	cursor: pointer;
+}
+
+.modal__stats {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 10px;
+}
+
+.modal__buttons {
+	display: flex;
+	justify-content: space-around;
+	padding: 10px;
+}
+
+.modal__button{
+	width: 60px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.modal__hide {
+	display: none;
+}
+
+.modal__lose {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.54);
+}
+
+/* Style for the star */
+.heart__hide {
+	display: none;
+}
+
+.heart__show {
+	color: red;
+}
+
+.score-panel .hearts {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+
+.score-panel .hearts li {
+    list-style: none;
+    display: inline-block;
+}

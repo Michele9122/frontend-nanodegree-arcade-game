@@ -42,37 +42,17 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 
-
-// Player class
-    // constructor
-    // properties
-        //x pos
-        //y pos
-        // sprite image
-    // methods
-        //update position
-            //check collisions
-                //the player hit the enemy
-            //check win
-                //the player reach the water
-        //render
-            // draw player on current position
-        //handle player keyboard input
-        //reset hero
-
-
-
-
 class Player {
     constructor() {
         this.step = 101;
         this.jump = 83;
-        this.startX = this.step * 2; //VEDERE COME MODIFICARE
-        this.startY = (this.jump * 4) + 55;
+        this.startX = 202; //VEDERE COME MODIFICARE
+        this.startY = 387;
         this.x = this.startX;     //set an initial value for the x and y property
         this.y = this.startY;
         this.sprite = 'images/char-boy.png'; //load the png from the folder
         this.win = false;
+        this.lose = 3;
     }
     //draw player on the current position
     render(){
@@ -107,9 +87,15 @@ class Player {
         for (let enemy of allEnemies){
             if (this.y === enemy.y && (enemy.x + enemy.step > this.x && enemy.x < this.x + this.step)) {
                 this.reset();
+                this.lose--;
+                removeLife();
+                if(this.lose === 0) {
+                    lose.classList.toggle('modal__hide');
+                }
             }
-            if(this.y === 55);
-                this.win = true;
+        }
+        if(this.y === 55) {
+            this.win = true;
         }
     }
 
@@ -119,12 +105,16 @@ class Player {
     }
 }
 
-const player = new Player();
-const bug1 = new Enemy(-101, 0, 200);
-const bug2 = new Enemy(-101, 83, 300);
-const bug3 = new Enemy((-101*2.5), 83, 300);
-const allEnemies = [];
-allEnemies.push(bug1,bug2,bug3);
+function removeLife(){
+    const heartList = document.querySelectorAll('.hearts i');
+    for(heart of heartList){
+        if (!heart.classList.contains('heart__hide')) {
+        heart.classList.remove('heart__show');
+        heart.classList.add('heart__hide');
+        break;
+        }
+    }
+}
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -133,6 +123,15 @@ allEnemies.push(bug1,bug2,bug3);
 // new hero object
 // init allEnemies array
 // per ogni necmico creato push l'oggetto nemico nell'array
+
+const player = new Player();
+const bug1 = new Enemy(-101, 0, 200);
+const bug2 = new Enemy(-101, 83, 300);
+const bug3 = new Enemy((-101*2.5), 83, 270);
+const bug4 = new Enemy((-101),166, 50);
+const allEnemies = [];
+allEnemies.push(bug1,bug2,bug3,bug4);
+const lose = document.querySelector('.modal__lose');
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.

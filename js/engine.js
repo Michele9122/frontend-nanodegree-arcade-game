@@ -22,7 +22,32 @@ var Engine = (function(global) {
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
-        lastTime;
+        lastTime,
+        id;
+
+    const modal = document.querySelector('.modal__background');
+    const button = document.querySelector('.modal__button');
+    const close = document.querySelector('.modal__close');
+    const retry = document.querySelector('.modal__retry');
+    const lose = document.querySelector('.modal__lose');
+    
+    button.addEventListener('click', function() {
+        modal.classList.toggle('modal__hide');
+        player.reset();
+        player.win = false;
+        win.requestAnimationFrame(main);
+    })
+
+    close.addEventListener('click', () => {
+        modal.classList.toggle('modal__hide');
+    })
+
+    retry.addEventListener('click', function() {
+        lose.classList.toggle('modal__hide');
+        player.reset();
+        player.win = false;
+        win.requestAnimationFrame(main);
+    })
 
     canvas.width = 505;
     canvas.height = 606;
@@ -52,10 +77,12 @@ var Engine = (function(global) {
          */
         lastTime = now;
 
-        /* Use the browser's requestAnimationFrame function to call this
-         * function again as soon as the browser is able to draw another frame.
-         */
-        win.requestAnimationFrame(main);
+        if (player.win === true) {
+            win.cancelAnimationFrame(id);
+            modal.classList.toggle('modal__hide');
+        } else {
+            id = win.requestAnimationFrame(main);
+        }  
     }
 
     /* This function does some initial setup that should only occur once,
@@ -164,6 +191,8 @@ var Engine = (function(global) {
         // noop
     }
 
+
+    
     /* Go ahead and load all of the images we know we're going to need to
      * draw our game level. Then set init as the callback method, so that when
      * all of these images are properly loaded our game will start.
