@@ -32,7 +32,7 @@ class Player {
         this.y = this.startY;
         this.sprite = 'images/char-boy.png'; 
         this.win = false;
-        this.lose = 3;
+        this.lose = 5;
     }
 
     render(){
@@ -73,7 +73,7 @@ class Player {
                 if(this.lose === 0) {
                     lose.classList.toggle('modal__hide');
                     resetScore();
-                    this.lose = 3;
+                    this.lose = 5;
                 }
             }
         }
