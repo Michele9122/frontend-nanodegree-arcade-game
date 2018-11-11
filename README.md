@@ -1,7 +1,6 @@
 # Classic Arcade Game Clone
 
-**Project 3: Classic Arcade Game Clone  ~ [Udacity Front-End Web Developer Nanodegree Program (https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001)
-Usage
+Classic Arcade Game Clone
 -----
 1. Clone this repository
 2. Navigate to your local folder of index.html and open it with your web browser 
