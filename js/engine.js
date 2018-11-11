@@ -31,6 +31,8 @@ var Engine = (function(global) {
     const retry = document.querySelector('.modal__retry');
     const lose = document.querySelector('.modal__lose');
     
+
+    //Event listener for the Modal
     button.addEventListener('click', function() {
         modal.classList.toggle('modal__hide');
         player.reset();
